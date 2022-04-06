@@ -16,36 +16,46 @@ class Todo(db.Model):
 
     
 @app.route("/", methods= ['GET', 'POST'])
-def root():
+def showall():
     if request.method == 'POST':
         title = request.form['title']
         desc = request.form['desc']
         todo = Todo(title= title, desc= desc)
         db.session.add(todo)
         db.session.commit()
-        
+
     allTodo = Todo.query.all()
     return render_template('index.html', allTodo = allTodo)
 
 
+
 @app.route("/edit", methods= ['GET', 'POST'])
+
 def edit():
-    if request.method == 'GET':
-        sno = request.args.get('sno')
-        todo = Todo.query.filter_by(sno = sno).first()
-    allTodo = Todo.query.all()
-    return render_template('index.html', todo = todo)
+    sno = request.args.get('sno')
+    if request.method=='POST':
+        title = request.form['title']
+        desc = request.form['desc']
+        todo = Todo.query.filter_by(sno=sno).first()
+        todo.title = title
+        todo.desc = desc
+        db.session.add(todo)
+        db.session.commit()
+        return redirect("/")
+        
+    todo = Todo.query.filter_by(sno=sno).first()
+    return render_template('edit.html', todo=todo)
 
 
-@app.route("/delete", methods= ['GET', 'POST'])
+
+
+@app.route('/delete', methods= ['GET', 'POST'])
 def delete():
+    sno = request.args.get('sno')
     if request.method == 'GET':
-        sno = request.args.get('sno')
         todo = Todo.query.filter_by(sno = sno).first()
         db.session.delete(todo)
         db.session.commit()
-    
-    allTodo = Todo.query.all()
     return redirect('/')
 
 
