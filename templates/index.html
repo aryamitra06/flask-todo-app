@@ -29,26 +29,36 @@
     </div>
     <div class="container mt-5">
         <h4 class="mb-3">All Todos</h4>
+        {% if allTodo|length == 0 %}
+        <div class="alert alert-info" role="alert">
+            No todo found!
+        </div>
+        {% else %}
         <table class="table table-dark table-borderless">
-            <thead>    
+            <thead>
                 <tr>
                     <th scope="col">Slno</th>
                     <th scope="col">Todo</th>
                     <th scope="col">Description</th>
                     <th scope="col">Time</th>
+                    <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
-                {% for todo in allTodo %}           
+                {% for todo in allTodo %}
                 <tr>
                     <td>{{loop.index}}</td>
                     <td>{{todo.title}}</td>
                     <td>{{todo.desc}}</td>
                     <td>{{todo.date_created}}</td>
+                    <td><a href="/edit?sno={{todo.sno}}"><button class="btn btn-warning btn-sm mx-1">Edit</button></a><a href="/delete?sno={{todo.sno}}"><button class="btn btn-danger btn-sm mx-1">Delete</button></a></td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
+        {% endif %}
+
+
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
