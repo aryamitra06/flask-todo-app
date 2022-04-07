@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
 {% block body %}
 <div class="mt-4 container-fluid">
-            <div class="row d-flex justify-content-center align-items-center">
-                <div class="col-md-3 col-9 mt-4">
-                    <div class="card mt-4">
-                        <div class="card-body">
-                    <h3 class="mb-3">Add Todo</h3>
+    <div class="row">
+        <div class="all-todos-text-parent">
+            <h4 class="mb-3 add-todos-text">Add Todo</h4>
+        </div>
+        <div class="col card-container">
+            <div class="card card-add mt-2">
+                <div class="card-body">
                     <form action="/" method="POST">
                         <div class="mb-3">
                             <label for="todo-title" class="form-label">Todo Title</label>
@@ -17,33 +19,36 @@
                         </div>
                         <button type="submit" class="btn btn-warning w-100">Add</button>
                     </form>
-                    </div></div>
                 </div>
             </div>
+        </div>
+    </div>
 
 
 </div>
-<div class="container mt-5">
-    <h4 class="mb-3">All Todos</h4>
+<div class="container container-all-todos">
+    <div class="all-todos-text-parent">
+        <h4 class="mb-3 all-todos-text">All Todos</h4>
+    </div>
     {% if allTodo|length == 0 %}
     <div class="alert alert-info" role="alert">
         No todo found!
     </div>
     {% else %}
     <div class="row">
-            {% for todo in allTodo %}
-            <div class="col-md-3">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                      <h5 class="card-title">{{todo.title}}</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">{{todo.date_created}}</h6>
-                      <p class="card-text">{{todo.desc}}</p>
-                      <a href="/edit?sno={{todo.sno}}"><button class="btn btn-warning btn-sm mx-1">Edit</button></a>
-                      <a href="/delete?sno={{todo.sno}}"><button class="btn btn-danger btn-sm mx-1">Delete</button></a>
-                    </div>
+        {% for todo in allTodo %}
+        <div class="col-md-3 card-container">
+            <div class="card card-main" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{todo.title}}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ todo.date_created.strftime('%Y-%m-%d') }}</h6>
+                    <p class="card-text">{{todo.desc}}</p>
+                    <a href="/edit?sno={{todo.sno}}"><button class="btn btn-warning btn-sm">Edit</button></a>
+                    <a href="/delete?sno={{todo.sno}}"><button class="btn btn-danger btn-sm">Delete</button></a>
                 </div>
-            </div>    
-            {% endfor %}  
+            </div>
+        </div>
+        {% endfor %}
     </div>
     {% endif %}
 </div>

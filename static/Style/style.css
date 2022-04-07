@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+body{
+    font-family: 'Ubuntu', sans-serif;
+}
+footer {
+    position: fixed;
+    height: 75px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #9FB4FF;
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+footer p {
+    margin: 0%;
+    padding: 0%;
+}
+.all-todos-text-parent{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.all-todos-text{
+    display: inline-block;
+    background-color: #9FB4FF;
+    color: aliceblue;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-radius: 10px;
+}
+.add-todos-text{
+    margin-top: 20px;
+    display: inline-block;
+    background-color: #708cf1;
+    color: aliceblue;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    border-radius: 10px;
+}
+.card-add{
+    width: 30%;
+}
+.card-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container-all-todos{
+    margin-top: 28px;
+}
+.header{
+    height: 70px;
+    width: 100%;
+    background-color: #F24A72;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.header img{
+    height: 40px;
+}
+.header-text{
+    margin: 0%;
+    padding: 0%;
+    color: aliceblue;
+    font-size: 2rem;
+    margin-left: 10px;
+
+}
+@media (max-width: 640px) {
+    .card-main{
+        margin-bottom: 20px;
+        width: 90% !important;
+    }
+    .card-add{
+        width: 90% !important;
+        height: 100% !important;
+    }
+    .card-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .all-todos-text, .add-todos-text{
+        width: 90%;
+        margin-top: 0px;
+    }
+}
