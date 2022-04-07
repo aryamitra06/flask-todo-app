@@ -55,6 +55,7 @@ footer p {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 20px;
 }
 .container-all-todos{
     margin-top: 28px;
